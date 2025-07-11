@@ -1,17 +1,22 @@
- body {
+body {
   font-family: Arial;
-  background: #f0f0f0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0;
   display: flex;
   justify-content: center;
   padding-top: 50px;
+  transition: background 0.5s ease;
 }
 
 .container {
-  background: white;
+  background: rgba(255, 255, 255, 0.85);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 input {
@@ -29,4 +34,3 @@ button {
   margin-top: 20px;
   font-size: 18px;
 }
-
