@@ -1,22 +1,22 @@
 body {
   font-family: Arial;
+  background: #f0f0f0;
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh;
-  margin: 0;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   padding-top: 50px;
-  transition: background 0.5s ease;
+  transition: background-image 0.5s ease-in-out;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 300px;
 }
 
 input {

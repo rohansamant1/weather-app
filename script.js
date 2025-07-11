@@ -16,39 +16,41 @@ async function getWeather() {
     const data = await response.json();
 
     if (data.cod === 200) {
-      const condition = data.weather[0].main.toLowerCase();
+      const weather = data.weather[0].main.toLowerCase();
+      const temp = data.main.temp;
+      const location = `${data.name}, ${data.sys.country}`;
+      const description = data.weather[0].description;
 
-      // Change background based on condition
-      switch (condition) {
-        case "clear":
-          body.style.backgroundImage = "url('https://i.gifer.com/7fZ.gif')"; // sunny gif
-          break;
-        case "clouds":
-          body.style.backgroundImage = "url('https://i.gifer.com/8dL.gif')"; // cloudy gif
-          break;
-        case "rain":
-        case "drizzle":
-          body.style.backgroundImage = "url('https://i.gifer.com/VgF.gif')"; // rain gif
-          break;
-        case "snow":
-          body.style.backgroundImage = "url('https://i.gifer.com/WlKx.gif')"; // snow gif
-          break;
-        case "thunderstorm":
-          body.style.backgroundImage = "url('https://i.gifer.com/ZxK.gif')"; // storm gif
-          break;
-        default:
-          body.style.backgroundImage = "url('https://i.gifer.com/1am.gif')"; // default
-      }
+      // Set weather background
+      setWeatherBackground(weather);
 
       resultDiv.innerHTML = `
-        <strong>${data.name}, ${data.sys.country}</strong><br>
-        🌡️ Temp: ${data.main.temp}°C<br>
-        ☁️ Weather: ${data.weather[0].description}
+        <strong>${location}</strong><br>
+        🌡️ ${temp}°C<br>
+        ☁️ ${description}
       `;
     } else {
       resultDiv.textContent = "City not found.";
+      body.style.backgroundImage = "";
     }
   } catch (error) {
-    resultDiv.textContent = "Error fetching weather.";
+    resultDiv.textContent = "Failed to fetch weather data.";
+    body.style.backgroundImage = "";
+  }
+}
+
+function setWeatherBackground(condition) {
+  const body = document.getElementById("body");
+
+  if (condition.includes("cloud")) {
+    body.style.backgroundImage = "url('https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif')";
+  } else if (condition.includes("rain")) {
+    body.style.backgroundImage = "url('https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif')";
+  } else if (condition.includes("clear") || condition.includes("sun")) {
+    body.style.backgroundImage = "url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif')";
+  } else if (condition.includes("snow")) {
+    body.style.backgroundImage = "url('https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif')";
+  } else {
+    body.style.backgroundImage = "url('https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif')";
   }
 }
